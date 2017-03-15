@@ -4,11 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node src/server.js",
+    "open:server": "nodemon src/server.js",
+    "open:localhost": "open http://localhost:3000",
+    "dev": "npm-run-all --parallel open:server open:localhost"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "npm-run-all": "^4.0.2"
   }
 }

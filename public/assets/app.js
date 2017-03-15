@@ -8,18 +8,19 @@ function handleSearch(e) {
   var searchQuery = e.target.value;
   if (searchQuery.length > 0) {
     // make a call to api
-    fetch('GET', e.target.value, renderResponse);
+    fetch('GET', `?search=${encodeURIComponent(e.target.value)}`, renderResponse);
   }
 }
 
-function fetch(method, searchTerm, cb) {
+function fetch(method, query, cb) {
   var xhr = new XMLHttpRequest();
-  xhr.open(method, 'http://localhost:3000/' + searchTerm);
+  xhr.open(method, 'http://localhost:3000/' + query);
+  console.log('http://localhost:3000/' + query);
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
       cb(JSON.parse(xhr.responseText));
     }
-  }
+  };
 
   xhr.send();
 }
@@ -31,6 +32,5 @@ function renderResponse(words) {
     let itemDOM = document.createElement('li');
     itemDOM.textContent = word;
     resultsDOM.appendChild(itemDOM);
-
-  })
+  });
 }
